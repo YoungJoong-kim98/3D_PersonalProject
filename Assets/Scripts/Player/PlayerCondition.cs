@@ -35,7 +35,7 @@ public class PlayerCondition : MonoBehaviour, IDamagalbe
     public void Eat(float amout) //스태미너 회복
     {
         stamina.Add(amout);
-        //stamina.maxValue += 10;
+        stamina.maxValue += 10;
     }
     public void Die() // 플레이어 죽음
     {
