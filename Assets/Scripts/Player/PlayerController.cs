@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Moverment")]
+    public float startSpeed;
     public float moveSpeed;
     public float jumpPower;
     private Vector2 curMovementInput;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        moveSpeed = startSpeed;
         Cursor.lockState = CursorLockMode.Locked;
         SetCameraView(isFirstPerson);
     }

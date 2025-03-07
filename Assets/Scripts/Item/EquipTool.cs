@@ -16,6 +16,10 @@ public class EquipTool : Equip
     public bool doesDealDamage;
     public int damage;
 
+    [Header("Speedincrease")]
+    public bool speedIncrease;
+
+
     private Animator animator;
     private Camera camera;
     void Start()

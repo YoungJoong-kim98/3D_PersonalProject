@@ -22,11 +22,16 @@ public class Equipment : MonoBehaviour
     {
         UnEquip();
         curEquip = Instantiate(data.equipPrefab, equipParent).GetComponent<Equip>();
+        if(data.speedUp)
+        {
+            controller.moveSpeed += data.equipSpeed;
+        }
 
     }
 
     public void UnEquip()
     {
+        controller.moveSpeed = controller.startSpeed;
         if (curEquip != null)
         {
             Destroy(curEquip.gameObject);
