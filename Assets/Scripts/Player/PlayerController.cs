@@ -36,9 +36,13 @@ public class PlayerController : MonoBehaviour
     private bool isFirstPerson = true; // 현재 시점 상태
     public GameObject Crosshair;
 
+
+    private Animator _animator;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _animator = GetComponentInChildren<Animator>();
     }
 
     void Start()
@@ -84,10 +88,12 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             curMovementInput = context.ReadValue<Vector2>();
+            _animator.SetBool("Move",true);
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
             curMovementInput = Vector2.zero;
+            _animator.SetBool("Move", false);
         }
     }
 
@@ -116,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
         for (int i = 0; i < rays.Length; i++)
         {
-            if (Physics.Raycast(rays[i], 0.9f, groundLayerMask)) //땅과 충돌하면 true 반환
+            if (Physics.Raycast(rays[i], 1.5f, groundLayerMask)) //땅과 충돌하면 true 반환
             {
                 return true; // 큐브 크기가 어느 정도 있으니 레이를 0.9정도 쏨
             }
