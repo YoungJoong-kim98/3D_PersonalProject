@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 curMovementInput;
     public LayerMask groundLayerMask;
 
+
+    [Header("Dash")]
+    public float dashForce = 20f; // 대시 힘
+
     [Header("Look")]
     public Transform cameraContainer;
     public float minXLook;
@@ -112,6 +116,19 @@ public class PlayerController : MonoBehaviour
         return false; // 네 개의 Ray 모두 충돌하지 않으면 false 반환 (공중에 있음)
 
     }
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            Dash();
+        }
+    }
+
+    void Dash()
+    {
+        Vector3 dashDirection = transform.forward; // 현재 바라보는 방향
+        _rigidbody.AddForce(dashDirection * dashForce, ForceMode.Impulse);
+    }
 
     public void OnInventory(InputAction.CallbackContext context)
     {
@@ -127,4 +144,6 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
         canLook = !toggle;
     }
+
+    
 }
