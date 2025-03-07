@@ -991,9 +991,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ef5b3c25a2ad04289b8f0eb2585428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemToGive: {fileID: 11400000, guid: 394e1586346b1f74783931e7d54b8cd5, type: 2}
+  itemsToGive:
+  - {fileID: 11400000, guid: 394e1586346b1f74783931e7d54b8cd5, type: 2}
+  - {fileID: 11400000, guid: b8f3541d639789d478e2b09b7f4f98db, type: 2}
   quantityPerHit: 1
-  capacy: 10
+  capacy: 100
 --- !u!65 &377370222
 BoxCollider:
   m_ObjectHideFlags: 0
