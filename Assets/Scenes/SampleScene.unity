@@ -2218,7 +2218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &895714278
 Transform:
   m_ObjectHideFlags: 0
@@ -2410,7 +2410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &963194226
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3480,7 +3480,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1361084752}
   - component: {fileID: 1361084754}
-  - component: {fileID: 1361084753}
   m_Layer: 6
   m_Name: Main Camera (1)
   m_TagString: MainCamera
@@ -3503,14 +3502,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 931469129}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
---- !u!81 &1361084753
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1361084751}
-  m_Enabled: 1
 --- !u!20 &1361084754
 Camera:
   m_ObjectHideFlags: 0
@@ -4051,12 +4042,17 @@ MonoBehaviour:
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 55
-  dashForce: 1500
+  dashForce: 3000
+  dashStamina: 20
   cameraContainer: {fileID: 931469129}
   minXLook: -85
   maxXLook: 85
   lookSensitivity: 0.1
   canLook: 1
+  firstPersonCamera1: {fileID: 963194227}
+  firstPersonCamera2: {fileID: 895714280}
+  thirdPersonCamera: {fileID: 1361084754}
+  Crosshair: {fileID: 4765594}
 --- !u!114 &1407531583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4211,6 +4207,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7896bdf9-48e5-4892-ad92-5641874b7656
     m_ActionName: Player/Dash[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1407531582}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnSwitchView
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d649a13d-f9c2-4c3a-bc06-e14641eaec96
+    m_ActionName: Player/ChangeCamera[/Keyboard/v]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

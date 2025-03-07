@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
 
 
     [Header("Dash")]
-    public float dashForce = 20f; // 대시 힘
+    public float dashForce; // 대시 힘
+    public float dashStamina;
 
     [Header("Look")]
     public Transform cameraContainer;
@@ -28,6 +29,12 @@ public class PlayerController : MonoBehaviour
     public Action inventory;
     private Rigidbody _rigidbody;
 
+    [Header("Cameras")]
+    public Camera firstPersonCamera1;  // 1인칭 카메라 1
+    public Camera firstPersonCamera2;  // 1인칭 카메라 2
+    public Camera thirdPersonCamera;   // 3인칭 카메라
+    private bool isFirstPerson = true; // 현재 시점 상태
+    public GameObject Crosshair;
 
     private void Awake()
     {
@@ -37,6 +44,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        SetCameraView(isFirstPerson);
     }
 
     // Update is called once per frame
@@ -118,7 +126,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started)
+        if (context.phase == InputActionPhase.Started&& CharacterManager.Instance.Player.condition.UseStamina(dashStamina)) //대쉬 스태미너 적용
         {
             Dash();
         }
@@ -145,5 +153,30 @@ public class PlayerController : MonoBehaviour
         canLook = !toggle;
     }
 
-    
+    public void OnSwitchView(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            isFirstPerson = !isFirstPerson;
+            SetCameraView(isFirstPerson);
+        }
+    }
+
+    void SetCameraView(bool firstPerson)
+    {
+        if (firstPerson)
+        {
+            Crosshair.SetActive(true);
+            if (firstPersonCamera1 != null) firstPersonCamera1.enabled = true;
+            if (firstPersonCamera2 != null) firstPersonCamera2.enabled = true;
+            if (thirdPersonCamera != null) thirdPersonCamera.enabled = false;
+        }
+        else
+        {
+            Crosshair.SetActive(false);
+            if (firstPersonCamera1 != null) firstPersonCamera1.enabled = false;
+            if (firstPersonCamera2 != null) firstPersonCamera2.enabled = false;
+            if (thirdPersonCamera != null) thirdPersonCamera.enabled = true;
+        }
+    }
 }
