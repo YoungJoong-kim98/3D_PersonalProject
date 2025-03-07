@@ -3,7 +3,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     public Transform pointA, pointB;
-    public float speed = 3f;
+    public float speed;
     private Vector3 target;
     private bool isMoving = false;
 

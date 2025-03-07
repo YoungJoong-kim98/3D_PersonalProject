@@ -22,7 +22,7 @@ public class Equipment : MonoBehaviour
     {
         UnEquip();
         curEquip = Instantiate(data.equipPrefab, equipParent).GetComponent<Equip>();
-        if(data.speedUp)
+        if(data.speedUp)  // 장착한 아이템이 스피드업이 true이면
         {
             controller.moveSpeed += data.equipSpeed;
         }
