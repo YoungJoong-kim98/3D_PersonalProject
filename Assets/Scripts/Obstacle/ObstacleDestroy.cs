@@ -10,5 +10,10 @@ public class ObstacleDestroy : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if(other.CompareTag("Player"))
+        {
+
+            other.transform.position = new Vector3(0, 2, 0);
+        }
     }
 }
