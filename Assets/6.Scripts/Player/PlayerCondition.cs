@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public interface IDamagalbe
 {
     void TakePhysicalDamage(int damage);
@@ -40,6 +40,7 @@ public class PlayerCondition : MonoBehaviour, IDamagalbe
     public void Die() // 플레이어 죽음
     {
         Debug.Log("죽음");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void TakePhysicalDamage(int damage) //데미지 피격
